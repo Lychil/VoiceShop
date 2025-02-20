@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; //
-import favouriteImg from "../images/svg/favorite.svg";
-import cartImg from "../images/svg/cart.svg";
+import favouriteImg from "../../../images/svg/favorite.svg";
+import cartImg from "../../../images/svg/cart.svg";
 import Logo from './Logo';
 
 const Wrapper = styled('header')`
@@ -36,21 +36,6 @@ width: 30px;
 height: 30px;
 `;
 
-const Counter = styled('div')`
-position: absolute;
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: 10px;
-top: 0;
-right: 0;
-width: 15px;
-height: 15px;
-border-radius: 50%;
-color: white;
-background-color: #e35252;
-`;
-
 const Header = () => {
     return (
         <Wrapper>
@@ -58,15 +43,9 @@ const Header = () => {
             <Nav>
                 <NavItem to="/cart" title='избранное' >
                     <Icon src={favouriteImg} alt='избранное' />
-                    <Counter>
-                        <span>0</span>
-                    </Counter>
                 </NavItem>
                 <NavItem to="/favorites" title='корзина'>
                     <Icon src={cartImg} alt='корзина' />
-                    <Counter>
-                        <span>0</span>
-                    </Counter>
                 </NavItem>
             </Nav>
         </Wrapper>

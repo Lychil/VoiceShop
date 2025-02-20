@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "../shared/Layout";
+import Layout from "../common/components/shared/Layout";
 import Home from "../pages/Home";
 
 const AppRoutes = () => {

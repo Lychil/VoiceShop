@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Outlet } from "react-router-dom";
-import { Container } from "../styles/styles";
 import Header from "./Header";
+import { Container } from "../../styles/styles";
 
 const Wrapper = styled('div')`
 margin: 0 20px;

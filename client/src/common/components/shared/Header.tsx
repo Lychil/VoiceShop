@@ -41,10 +41,10 @@ const Header = () => {
         <Wrapper>
             <Logo />
             <Nav>
-                <NavItem to="/cart" title='избранное' >
+                <NavItem to="/favorites" title='избранное' >
                     <Icon src={favouriteImg} alt='избранное' />
                 </NavItem>
-                <NavItem to="/favorites" title='корзина'>
+                <NavItem to="/cart" title='корзина'>
                     <Icon src={cartImg} alt='корзина' />
                 </NavItem>
             </Nav>

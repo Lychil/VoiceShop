@@ -1,10 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { VoiceCommands } from "../../../types/enums";
 import { Product } from "../../../types/interfaces";
 import { products } from "../../../mocks/products";
+import { ShopContext } from "./Layout";
 
 const VoiceListener = () => {
     const [listening, setListening] = useState(false);
+
+    const context = useContext(ShopContext);
+
+    if (!context) {
+        return <div>Ошибка: контекст не найден</div>;
+    }
+
+    const {setCart} = context;
 
     useEffect(() => {
         const SpeechRecognition =
@@ -64,6 +73,7 @@ const VoiceListener = () => {
             }
 
             localStorage.setItem('cart', JSON.stringify(cart));
+            setCart(cart);
         } else if (removeRegex.test(text)) {
             const productId = Number(text.match(/\d+/));
 
@@ -77,10 +87,11 @@ const VoiceListener = () => {
                     cart.splice(productIndex, 1);
                 }
             }
-
             localStorage.setItem('cart', JSON.stringify(cart));
+            setCart(cart);
         } else if (clearRegex.test(text)) {
             localStorage.removeItem('cart');
+            setCart([]);
         }
     };
 

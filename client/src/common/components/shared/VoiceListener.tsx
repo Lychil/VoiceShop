@@ -4,9 +4,11 @@ import { Product } from "../../../types/interfaces";
 import { products } from "../../../mocks/products";
 import { ShopContext } from "./Layout";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const VoiceListener = () => {
     const [listening, setListening] = useState(false);
+    const navigate = useNavigate();
 
     const context = useContext(ShopContext);
 
@@ -96,6 +98,12 @@ const VoiceListener = () => {
             localStorage.removeItem('cart');
             setCart([]);
             toast.success('Корзина очищена')
+        } else if (text.toLowerCase().includes(VoiceCommands.TO_HOME)) {
+            navigate('/home');
+            toast.success('Вы перешли на главную страницу!');
+        } else if (text.toLowerCase().includes(VoiceCommands.TO_CART)) {
+            navigate('/cart');
+            toast.success('Вы перешли в корзину!');
         }
     };
 

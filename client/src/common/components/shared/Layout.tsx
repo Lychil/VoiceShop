@@ -5,6 +5,7 @@ import { Container } from "../../styles/styles";
 import VoiceListener from "./VoiceListener";
 import { createContext, useEffect, useState } from "react";
 import { Product } from "../../../types/interfaces";
+import CommandListButton from "../CommandListButton";
 
 const Wrapper = styled('div')`
 margin: 0 20px;
@@ -34,6 +35,7 @@ export default function Layout() {
             <Container>
                 <Wrapper>
                     <Header />
+                    <CommandListButton />
                     <VoiceListener />
                     <main>
                         <Outlet />

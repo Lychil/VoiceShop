@@ -62,6 +62,7 @@ const ProductSection: React.FC = () => {
                         <ProductImage src={product.image} alt={product.name} />
                         <ProductName>{product.name}</ProductName>
                         <ProductPrice>{product.price}</ProductPrice>
+                        <span>{product.id}</span>
                     </ProductCard>
                 ))}
             </ProductGrid>

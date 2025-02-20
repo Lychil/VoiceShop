@@ -3,6 +3,7 @@ import { VoiceCommands } from "../../../types/enums";
 import { Product } from "../../../types/interfaces";
 import { products } from "../../../mocks/products";
 import { ShopContext } from "./Layout";
+import { toast } from "react-toastify";
 
 const VoiceListener = () => {
     const [listening, setListening] = useState(false);
@@ -13,11 +14,10 @@ const VoiceListener = () => {
         return <div>Ошибка: контекст не найден</div>;
     }
 
-    const {setCart} = context;
+    const { setCart } = context;
 
     useEffect(() => {
-        const SpeechRecognition =
-            window.SpeechRecognition || window.webkitSpeechRecognition;
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) return;
 
         const recognition = new SpeechRecognition();
@@ -33,7 +33,7 @@ const VoiceListener = () => {
             recognition.start();
         };
 
-        recognition.onresult = (event) => {
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
             const transcript = event.results[event.results.length - 1][0].transcript.trim();
 
             if (transcript !== lastCommand) {
@@ -74,6 +74,7 @@ const VoiceListener = () => {
 
             localStorage.setItem('cart', JSON.stringify(cart));
             setCart(cart);
+            toast.success('Продукт успешно добавлен в корзину!')
         } else if (removeRegex.test(text)) {
             const productId = Number(text.match(/\d+/));
 
@@ -87,11 +88,14 @@ const VoiceListener = () => {
                     cart.splice(productIndex, 1);
                 }
             }
+
             localStorage.setItem('cart', JSON.stringify(cart));
             setCart(cart);
+            toast.success('Продукт успешно удален из корзины!')
         } else if (clearRegex.test(text)) {
             localStorage.removeItem('cart');
             setCart([]);
+            toast.success('Корзина очищена')
         }
     };
 
